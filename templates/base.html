@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CovidSchoolBook</title>
+  <link rel="shortcut icon" href=" https://www.flaticon.com/svg/static/icons/svg/476/476863.svg" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+    html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
+}
+
+/* Other Classes for Page Styling */
+
+body {
+  background: #007bff;
+  color: azure;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+</style>
+
+<body >
+    <nav class="navbar navbar-expand-md navbar-dark  fixed-top" style="background-color: #33AEFF;">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/476/476863.svg"  style="height: 25px;;">
+
+        <a href="#" class="navbar-brand">CovidSchoolBook</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-5">
+                          <!-- Dropdown -->
+    <li class="nav-item dropdown active ml-5">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Student records
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'student_list' %} ">All students</a>
+          <a class="dropdown-item" href="{% url 'class-list' 10  %}">10th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 9  %}">9th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 8  %}">8th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 7  %}">7th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 6  %}">6th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 5  %}">5th class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 4  %}">4rth class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 3  %}">3rd class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 2  %}">2nd class</a>
+          <a class="dropdown-item" href="{% url 'class-list' 1  %}">1stclass</a>
+       
+    
+        </div>
+      </li>
+
+                                   <!-- Dropdown -->
+    <li class="nav-item dropdown active ml-5">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Teachers record
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'teacher_list' %}">All teachers</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 10  %}">10th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 9  %}">9th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 8  %}">8th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 7  %}">7th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 6  %}">6th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 5  %}">5th class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 4  %}">4rth class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 3  %}">3rd class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 2  %}">2nd class</a>
+          <a class="dropdown-item" href="{% url 'class-list-teacher' 1  %}">1stclass</a>
+
+        </div>
+      </li>
+                                   <!-- Dropdown -->
+    <li class="nav-item dropdown active ml-5">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Add Record
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'add_student' %}">Add students</a>
+          <a class="dropdown-item" href="{% url 'add_teacher' %}" >Add Teacher </a>
+          <a class="dropdown-item" href="{% url 'add_school' %}" >Add School </a>
+        </div>
+      </li>         
+     <a href="{% url 'school_list' %}" class="nav-item nav-link active ml-5" >School Records </a>
+    <a href="{% url 'about-me' %}" class="nav-item nav-link active ml-5" >About-us </a>
+    <li class="nav-item dropdown active ml-5">
+      <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop" data-toggle="dropdown">
+      Welcome <strong class="text-primary">{{ user.username|default:"Guest please login" }}</strong>
+      </a>
+      <div class="dropdown-menu">
+        {% if user.is_authenticated %}
+        <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+        <a class="dropdown-item " href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a class="dropdown-item " href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
+    </li>
+    </nav>
+</div>
+
+
+
+  
+    <div class="container">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+    <div id="page-content">
+        <div class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+              <h1 class="font-weight-light mt-4 text-white">CovidSchoolBook record toolkit</h1>
+              <p class="lead text-white-50">A powerfull tool to maintain records of school and student in your city having covid-19 and provides a real time database acess to examine covid free schools</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+          <small> syedmoheedulhassan@gmail.com Copyright &copy; CovidSchoolBook.pythonanywhere.com</small>
+        </div> 
+      </footer>

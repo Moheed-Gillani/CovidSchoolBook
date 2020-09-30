@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="mt-5">
+    <h2>Delete {{ object.name}}</h2>
+    <table class="table table-sm">
+
+        <tr>
+            <th>Name:</th>
+           <strong><td>{{ object.name}}</td></strong> 
+        </tr>
+        <tr>
+            <th>Guardain Name:</th>
+            <td> {{ object.gaurdain_name }} </td>
+        </tr>
+        <tr>
+            <th>Guardain contact:</th>
+            <td>{{ object.Guardain_contact }}</td>
+        </tr>
+        <tr>
+            <th>  Rollno: </th>
+            <td> {{ object.rollno }}</td>
+        </tr>
+        <tr>
+            <th>Admission date:</th>
+            <td>{{ object.joined }}</td>
+        </tr>
+    
+        <tr>
+            <th> Class:</th>
+            <td>{{ object.grade }}</td>
+        </tr>
+        <tr>
+            <th> Tuition Fees:</th>
+            <td> Rs: {{ object.fee}}pkr</td>
+        </tr>
+      
+    </table>
+</div>
+<form method="post">{% csrf_token %} 
+    <h5>Are you sure you want to delete "{{ object }}"?</h5> 
+    <input type="submit" value="Confirm" class="btn btn-danger"> 
+</form> 
+
+{% endblock %}

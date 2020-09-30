@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1 style="color: green;">Teachers records </h1></center>
+<div class="row">
+{% for teachers in object_list %}
+<div class="col-lg-6 col-md-6 col-12">
+<table class="table mt-2">
+    <h2>Details for {{ teachers.name}} </h2>
+    {% if teachers.photo %}
+    <tr>
+        <td>
+            <img src="{{ teachers.photo.url }}" class="img-fluid rounded-circle"  style="height:200px; width:200px;">
+
+        </td>
+    </tr>
+{% else %}
+<tr>
+    <td>
+        No image to display
+
+    </td>
+</tr>
+{% endif %}
+        <th>Name:</th>
+       <strong><td>{{ teachers.name}}</td></strong> 
+     </tr>
+    <tr>
+        <th>Gender:</th>
+        <td> {{ teachers.gender }} </td>
+    </tr>
+    <tr>
+        <th>School:</th>
+        <td> {{ teachers.school }} </td>
+    </tr>
+    <tr>
+        <th>Name:</th>
+        <td>{{ teachers.name}}</td>
+    </tr>
+    <tr>
+        <th> Email: </th>
+        <td>{{ teachers.email }}</td>
+    </tr>
+    <tr>
+        <th>Contact:</th>
+        <td>{{ teachers.contact }}</td>
+    </tr>
+
+
+
+    {% if teachers.Covid_19 %}
+    <tr>
+        <th>COVID-19:</th>
+        <td class="badge badge-danger"> Had corona virus </td>
+    </tr>
+    {% else %}
+    <tr>
+        <th>COVID-19:</th>
+        <td class="badge badge-light"> No corona Safe </td>
+        
+    </tr>
+    {% endif %}
+
+
+
+
+    <tr>
+        <th>Subjects:</th>
+        <td>   {% for subject in teachers.subjects.all %}
+            {{ subject.sub_name }}
+                {% endfor %}</td>
+    </tr>
+    <tr>
+        <th> Address:</th>
+        <td>{{ teachers.address }}</td>
+    </tr>
+</table>
+
+<a href="{% url 'teacher_detail' teachers.id   %}" class="btn btn-info ">Edit {{ teachers.name}} </a>
+<br>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

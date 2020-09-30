@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="color: green;"> Details of {{ object.name}} </h2>
+<table class="table">
+    {% if object.photo %}
+    <tr>
+        <td>
+            <img src="{{ object.photo.url }}" class="img-fluid rounded-circle"  style="height:200px; width:200px;">
+
+        </td>
+    </tr>
+{% else %}
+<tr>
+    <td>
+        No image to display
+
+    </td>
+</tr>
+{% endif %}
+        <th>Name:</th>
+       <strong><td>{{ object.name}}</td></strong> 
+    </tr>
+    <tr>
+        <th>Guardain Name:</th>
+        <td> {{ object.gaurdain_name }} </td>
+    </tr>
+    <tr>
+        <th>Guardain contact:</th>
+        <td>{{ object.Guardain_contact }}</td>
+    </tr>
+
+    {% if object.Covid_19 %}
+    <tr>
+        <th>COVID-19:</th>
+        <td class="badge badge-danger"> Had corona virus </td>
+    </tr>
+    {% else %}
+    <tr>
+        <th>COVID-19:</th>
+        <td class="badge badge-light"> No corona Safe </td>
+        
+    </tr>
+    {% endif %}
+
+    <tr>
+        <th>  Rollno: </th>
+        <td> {{ object.rollno }}</td>
+    </tr>
+    <tr>
+        <th>Admission date:</th>
+        <td>{{ object.joined }}</td>
+    </tr>
+
+    <tr>
+        <th> Class:</th>
+        <td>{{ object.grade }}</td>
+    </tr>
+    <tr>
+        <th>School:</th>
+        <td> {{ object.school }} </td>
+    </tr>
+    <tr>
+        <th> Address:</th>
+        <td>{{ object.address}}</td>
+    </tr>
+  
+</table>
+<a href="{% url 'update_student' object.id  %}" class="btn btn-info">Update student</a>
+<a href="{% url 'delete_student' object.id  %}" class="btn btn-warning">Delete student</a>
+
+
+{% endblock %}

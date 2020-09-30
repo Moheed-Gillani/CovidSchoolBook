@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1>Students records </h1></center>
+<div class="row">
+
+ {% for students in object_list %}
+ <div class="col-lg-6 col-md-6 col-12">
+
+        <table class="table">
+            {% if students.photo %}
+            <tr>
+                <td>
+                    <img src="{{ students.photo.url }}" class="img-fluid rounded-circle"  style="height:200px; width:200px;">
+        
+                </td>
+            </tr>
+        {% else %}
+        <tr>
+            <td>
+                No image to display
+        
+            </td>
+        </tr>
+        {% endif %}
+        
+            <h2>Details for {{ students.name}} </h2>
+            <tr>
+                <th>Name:</th>
+               <strong><td>{{ students.name}}</td></strong> 
+            </tr>
+            <tr>
+                <th>Guardain Name:</th>
+                <td> {{ students.gaurdain_name }} </td>
+            </tr>
+            <tr>
+                <th>Guardain contact:</th>
+                <td>{{ students.Guardain_contact }}</td>
+            </tr>
+            {% if students.Covid_19 %}
+            <tr>
+                <th>COVID-19:</th>
+                <td class="badge badge-danger"> Had corona virus </td>
+            </tr>
+            {% else %}
+            <tr>
+                <th>COVID-19:</th>
+                <td class="badge badge-light"> No corona Safe </td>
+                
+            </tr>
+            {% endif %}
+            <tr>
+                <th>  Rollno: </th>
+                <td> {{ students.rollno }}</td>
+            </tr>
+            <tr>
+                <th>School:</th>
+                <td> {{ students.school }} </td>
+            </tr>
+            <tr>
+                <th>Admission date:</th>
+                <td>{{ students.joined }}</td>
+            </tr>
+        
+            <tr>
+                <th> Class:</th>
+                <td>{{ students.grade }}</td>
+            </tr>
+            <tr>
+                <th> Address:</th>
+                <td> {{ students.address}}</td>
+            </tr>
+          
+        </table>
+        <a href="{% url 'student_detail' students.id   %}"  class="btn btn-info ">Edit {{ students.name}}  </a>
+
+ </div>
+        {% endfor %}
+
+
+   
+</div>
+
+
+{% endblock %}
