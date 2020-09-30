@@ -35,7 +35,7 @@ urlpatterns=[
     # view to delete the school records
     path('delete_school/<int:pk>',DeleteSchool.as_view(),name='delete_school'),
     #about me
-    path('about-me',TemplateView.as_view(template_name='admin/me.html'),name='about-me'),
+    path('',TemplateView.as_view(template_name='admin/me.html'),name='about-me'),
     #view to filter students by grades
     path('Student_of_class/<int:pk>',ClassListStudent.as_view(),name='class-list'),
     #view to filter teachers by grades
