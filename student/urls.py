@@ -5,6 +5,7 @@ from django.contrib.auth import views as auth_views
 from sms import settings
 from student.views import *
 urlpatterns=[
+    path('',TemplateView.as_view(template_name='admin/me.html'),name='about-me'),
     # view the list of students
     path('Students',StudentList.as_view(),name='student_list'),
 
@@ -35,7 +36,6 @@ urlpatterns=[
     # view to delete the school records
     path('delete_school/<int:pk>',DeleteSchool.as_view(),name='delete_school'),
     #about me
-    path('',TemplateView.as_view(template_name='admin/me.html'),name='about-me'),
     #view to filter students by grades
     path('Student_of_class/<int:pk>',ClassListStudent.as_view(),name='class-list'),
     #view to filter teachers by grades
