@@ -81,12 +81,12 @@ class AddTeacher(CreateView):
  # views to add school records   
 class SchoolList(ListView):
     model=School
-    template_name='school/school_list.html'
+    template_name='schools/school_list.html'
 
 # view to add the school records
 class AddSchool(CreateView):
     model=School
-    template_name='school/add_school.html'
+    template_name='schools/add_school.html'
     fields=['school_name','location','owner_name','owner_contact']
     success_url='/school_list'
 
@@ -94,12 +94,12 @@ class AddSchool(CreateView):
 class UpdateSchool(UpdateView):
     model=School
     fields=['school_name','location','owner_name','owner_contact']
-    template_name='school/add_school.html'
+    template_name='schools/add_school.html'
     success_url='/school_list'
 
 
 # view to Delete the school records
 class DeleteSchool(DeleteView):
     model=School
-    template_name='school/school_confirm_delete.html'
+    template_name='schools/school_confirm_delete.html'
     success_url='/school_list'

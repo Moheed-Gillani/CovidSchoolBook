@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<center><h1 style="color: green;">School records </h1></center>
+<div class="row">
+{% for school in object_list %}
+<div class="col-lg-6 col-md-6 col-12">
+<table class="table">
+    <h2>Details of School {{ school.school_name }}</h2>
+    <tr>
+        <th>Location:</th>
+       <strong><td>{{ school.location}}</td></strong> 
+    </tr>
+    <tr>
+        <th>Owner:</th>
+        <td>{{ school.owner_name  }} </td>
+    </tr>
+    <tr>
+        <th>Owner contact:</th>
+        <td>{{ school.owner_contact }}</td>
+    </tr>
+<tr>
+<th>
+<center><h5>Corona patients in {{ school.school_name }}</h5></center>
+</th>
+</tr>
+    <tr>
+      
+        {% for teachers in school.teacher_set.all %}
+        {% if teachers.Covid_19 %}
+        <th class=" text-warning">{{ teachers.name }} had corona positive </th>
+        <td><a href="{% url 'teacher_detail' teachers.id %}" class="btn btn-primary btn-sm">Details</a></td>
+        <td class="badge badge-danger"> Had corona virus </td>
+        
+    </tr>
+    {% endif %}
+    {% endfor %}
+            
+    </tr>
+    
+     
+    <tr>
+      
+        {% for students in school.student_set.all %}
+        {% if students.Covid_19 %}
+        <th class=" text-warning">{{ students.name }} had corona positive </th>
+        <td><a href="{% url 'student_detail' students.id %}" class="btn btn-primary btn-sm">Details</a></td>
+        <td class="badge badge-danger"> Had corona virus </td>
+        
+    </tr>
+    {% endif %}
+    {% endfor %}
+            
+    </tr>
+
+</table>
+<a href="{% url 'update_school' school.id %} " class="btn btn-info">Update School</a>
+<a href="{% url 'delete_school' school.id %}"class="btn btn-warning" >Delete School</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

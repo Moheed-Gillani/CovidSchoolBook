@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="mt-5">
+    <table class="table">
+        <h2>Delete {{ object.school_name }}</h2>
+        <tr>
+            <th>location:</th>
+           <strong><td>{{ object.location}}</td></strong> 
+        </tr>
+        <tr>
+            <th>Owner:</th>
+            <td>{{ object.owner_name  }} </td>
+        </tr>
+        <tr>
+            <th>Owner contact:</th>
+            <td>{{ object.owner_contact }}</td>
+        </tr>
+        <tr>
+            <th> teacher: </th>
+            <td>
+                {% for teacher in object.teacher_set.all %}
+                =>{{ teacher.name }}
+                <br>Contact :
+                {{ teacher.contact }}
+                <br>
+              {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th> Email:</th>
+            <td>  
+                {{ object.email }}</td>
+        </tr>
+        <tr>
+            <th>Students</th>
+            <td> {% for students in object.student_set.all %}
+                
+                =>{{ students.name }}
+                <br> 
+                Guardain_contact:{{ students.Guardain_contact }}
+                <br> Grade/class:{{ students.grade }}
+                <br>
+                {% endfor %}
+                <br>
+            </td>
+                
+        </tr>
+    </table>
+</div>
+<form method="post">{% csrf_token %} 
+    <h5>Are you sure you want to delete "{{ object }}"?</h5> 
+    <input type="submit" value="Confirm" class="btn btn-danger"> 
+</form> 
+
+{% endblock %}
