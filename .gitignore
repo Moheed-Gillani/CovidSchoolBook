@@ -2,6 +2,6 @@
 *~
 /.vscode
 __pycache__
-db.sqlite3
 school
+db.sqlite3
 .DS_Store
